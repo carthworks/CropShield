@@ -63,7 +63,7 @@ const Navigation = () => {
                 to={path}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   isActive(path)
-                    ? "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent"
                 }`}
               >

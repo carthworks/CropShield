@@ -22,11 +22,17 @@
     --popover:            0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    /* ── Primary — single dark accent ── */
-    --primary:            0 0% 9%;         /* zinc-900 */
-    --primary-foreground: 0 0% 100%;
-    --primary-light:      0 0% 20%;
-    --primary-dark:       0 0% 4%;
+    /* ── Primary — emerald green ── */
+    --primary:            142 71% 38%;    /* emerald green */
+    --primary-foreground: 0 0% 100%;      /* white text on green */
+    --primary-light:      142 71% 50%;
+    --primary-dark:       142 71% 28%;
+
+    /* ── Accent — neutral hover bg ── */
+    --accent:             0 0% 96%;
+    --accent-foreground:  0 0% 9%;
+    --green:              142 71% 38%;    /* alias for direct use */
+    --ring:               142 71% 38%;    /* focus ring = green */
 
     /* ── Secondary — mid-grey ── */
     --secondary:          0 0% 96%;
@@ -38,16 +44,12 @@
     --muted:              0 0% 96%;
     --muted-foreground:   0 0% 45%;
 
-    --accent:             0 0% 96%;
-    --accent-foreground:  0 0% 9%;
-
     /* ── Utility ── */
     --destructive:        0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
     --border:             0 0% 90%;
     --input:              0 0% 94%;
-    --ring:               0 0% 9%;
 
     /* ── No gradients — flat backgrounds only ── */
     --gradient-primary:   none;
@@ -66,15 +68,15 @@
     /* ── Sidebar (inherits neutral palette) ── */
     --sidebar-background:          0 0% 98%;
     --sidebar-foreground:          0 0% 20%;
-    --sidebar-primary:             0 0% 9%;
+    --sidebar-primary:             142 71% 38%;
     --sidebar-primary-foreground:  0 0% 100%;
-    --sidebar-accent:              0 0% 94%;
-    --sidebar-accent-foreground:   0 0% 9%;
+    --sidebar-accent:              142 60% 94%;
+    --sidebar-accent-foreground:   142 60% 20%;
     --sidebar-border:              0 0% 90%;
-    --sidebar-ring:                0 0% 9%;
+    --sidebar-ring:                142 71% 45%;
   }
 
-  /* Dark mode — ink on dark paper, still no colour accents */
+  /* Dark mode — ink on dark paper, green accent carried through */
   .dark {
     --background:         0 0% 7%;
     --foreground:         0 0% 95%;
@@ -85,10 +87,16 @@
     --popover:            0 0% 10%;
     --popover-foreground: 0 0% 95%;
 
-    --primary:            0 0% 95%;
-    --primary-foreground: 0 0% 9%;
-    --primary-light:      0 0% 80%;
-    --primary-dark:       0 0% 100%;
+    /* ── Primary — lighter green for dark bg ── */
+    --primary:            142 60% 48%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light:      142 60% 58%;
+    --primary-dark:       142 60% 36%;
+
+    --accent:             0 0% 14%;
+    --accent-foreground:  0 0% 95%;
+    --green:              142 60% 48%;
+    --ring:               142 60% 48%;
 
     --secondary:          0 0% 14%;
     --secondary-foreground: 0 0% 95%;
@@ -98,15 +106,11 @@
     --muted:              0 0% 14%;
     --muted-foreground:   0 0% 55%;
 
-    --accent:             0 0% 14%;
-    --accent-foreground:  0 0% 95%;
-
     --destructive:        0 62% 38%;
     --destructive-foreground: 0 0% 95%;
 
     --border:             0 0% 18%;
     --input:              0 0% 16%;
-    --ring:               0 0% 80%;
 
     --shadow-soft: 0 1px 4px 0 hsl(0 0% 0% / 0.25);
     --shadow-card: 0 1px 8px 0 hsl(0 0% 0% / 0.30);
@@ -115,10 +119,10 @@
     --sidebar-foreground:          0 0% 85%;
     --sidebar-primary:             0 0% 95%;
     --sidebar-primary-foreground:  0 0% 9%;
-    --sidebar-accent:              0 0% 13%;
-    --sidebar-accent-foreground:   0 0% 85%;
+    --sidebar-accent:              142 40% 14%;
+    --sidebar-accent-foreground:   142 60% 80%;
     --sidebar-border:              0 0% 16%;
-    --sidebar-ring:                0 0% 80%;
+    --sidebar-ring:                142 60% 55%;
   }
 }
 

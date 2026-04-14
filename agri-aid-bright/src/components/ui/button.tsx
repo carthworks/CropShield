@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:     "bg-foreground text-background hover:bg-foreground/85 transition-colors",
+        default:     "bg-primary text-primary-foreground hover:bg-primary/85 transition-colors",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors",
-        outline:     "border border-border bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors",
+        outline:     "border border-border bg-transparent text-foreground hover:bg-primary hover:text-primary-foreground transition-colors",
         secondary:   "bg-secondary text-secondary-foreground border border-border hover:bg-secondary/70 transition-colors",
         ghost:       "text-foreground hover:bg-accent hover:text-accent-foreground transition-colors",
-        link:        "text-foreground underline-offset-4 hover:underline",
-        hero:        "bg-foreground text-background font-semibold hover:bg-foreground/85 transition-colors",
-        predict:     "bg-foreground text-background font-semibold hover:bg-foreground/85 transition-colors",
+        link:        "text-primary underline-offset-4 hover:underline",
+        hero:        "bg-primary text-primary-foreground font-semibold hover:bg-primary/85 transition-colors",
+        predict:     "bg-primary text-primary-foreground font-semibold hover:bg-primary/85 transition-colors",
       },
       size: {
         default: "h-10 px-4 py-2",
