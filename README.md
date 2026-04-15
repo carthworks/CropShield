@@ -4,6 +4,7 @@
 
 AgriAidAI combines a fine-tuned MobileNetV2 computer vision model with a FastAPI backend and a React frontend to deliver instant crop disease diagnosis, expert treatment recommendations, live weather intelligence, and a persistent scan history — all in one platform.
 
+[image  ]
 ---
 
 ## ✨ Features
@@ -105,7 +106,7 @@ pip install fastapi uvicorn tensorflow httpx numpy pillow python-multipart
 python -m agriaidai_backend.main
 ```
 
-Backend runs at: **http://localhost:8000**  
+Backend runs at: **http://localhost:8000**
 Interactive API docs: **http://localhost:8000/docs**
 
 > **Environment variables** (optional — set to suppress TF noise):
