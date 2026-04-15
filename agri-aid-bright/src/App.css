@@ -41,3 +41,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.logn-box {
+    background: #fcecd4;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #e0a33b;
+}

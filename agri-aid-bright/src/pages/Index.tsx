@@ -1,18 +1,14 @@
 // Home page — hero + inline login form
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Mail, Lock, Leaf, Phone, BarChart3, Camera, Shield, Zap } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Leaf, BarChart3, Camera, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const DEFAULT_PASSWORD = "password123#";
 
 const Index = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [tab, setTab] = useState("login");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
@@ -44,37 +40,92 @@ const Index = () => {
                 </div>
             </nav>
 
-            {/* Hero + Form */}
+            {/* Hero */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
-                    {/* Left — hero copy */}
-                    <div className="space-y-8">
-                        <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                            AI-Powered Crop Intelligence
-                        </p>
-                        <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                            AI-Powered Crop<br />Intelligence for Farmers
-                        </h1>
-                        <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-                            Identify diseases early, act with confidence, and maximize harvest
-                            outcomes using data-driven insights.
-                        </p>
+                    {/* Left — hero copy + horizontal login */}
+                    <div className="space-y-10">
+                        <div className="space-y-6">
+                            <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                                AI-Powered Crop Intelligence
+                            </p>
+                            <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                                AI-Powered Crop<br />Intelligence for Farmers
+                            </h1>
+                            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                                Identify diseases early, act with confidence, and maximize harvest
+                                outcomes using data-driven insights.
+                            </p>
 
-                        {/* Feature pills */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                            {[
-                                { icon: Zap, label: "Instant Disease Recognition" },
-                                { icon: Camera, label: "Live Weather Intelligence" },
-                                { icon: Shield, label: "Treatment Recommendations" },
-                            ].map(({ icon: Icon, label }) => (
-                                <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <div className="bg-muted p-2 rounded-md">
-                                        <Icon className="h-4 w-4 text-foreground" />
+                            {/* Feature pills */}
+                            <div className="flex flex-wrap gap-4 pt-1">
+                                {[
+                                    { icon: Zap, label: "Instant Disease Recognition" },
+                                    { icon: Camera, label: "Live Weather Intelligence" },
+                                    { icon: Shield, label: "Treatment Recommendations" },
+                                ].map(({ icon: Icon, label }) => (
+                                    <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <div className="bg-muted p-2 rounded-md">
+                                            <Icon className="h-4 w-4 text-foreground" />
+                                        </div>
+                                        {label}
                                     </div>
-                                    {label}
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Horizontal login row */}
+                        <div className="space-y-3">
+                            <div className="logn-box">
+
+
+                                <p className="text-sm font-medium text-foreground">Sign in to your account</p>
+                                <div className="flex flex-col sm:flex-row gap-2">
+                                    {/* Email */}
+                                    <div className="relative flex-1">
+                                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            placeholder="farmer@example.com"
+                                            className="pl-9 h-11"
+                                            value={email}
+                                            onChange={(e) => { setEmail(e.target.value); setLoginError(""); }}
+                                        />
+                                    </div>
+                                    {/* Password */}
+                                    <div className="relative flex-1">
+                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                        <Input
+                                            id="password"
+                                            type={showPassword ? "text" : "password"}
+                                            placeholder="Password"
+                                            className="pl-9 pr-9 h-11"
+                                            value={password}
+                                            onChange={(e) => { setPassword(e.target.value); setLoginError(""); }}
+                                            onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                        >
+                                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                        </button>
+                                    </div>
+                                    {/* Sign In button */}
+                                    <Button className="h-11 px-6 shrink-0" onClick={handleSignIn}>
+                                        Sign In
+                                    </Button>
                                 </div>
-                            ))}
+                                {loginError && (
+                                    <p className="text-xs text-destructive">{loginError}</p>
+                                )}
+                                <p className="text-sm text-muted-foreground">
+                                    <Link to="#" className="underline hover:text-foreground">Forgot password?</Link>
+                                </p>
+                            </div>
                         </div>
 
                         {/* Social proof */}
@@ -85,123 +136,14 @@ const Index = () => {
                         </div>
                     </div>
 
-                    {/* Right — login / signup form */}
-                    <div>
-                        <Card className="border border-border shadow-sm">
-                            <CardHeader className="pb-4">
-                                <CardTitle className="text-lg font-semibold text-foreground">Get started</CardTitle>
-                                <CardDescription>Sign in or create an account</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Tabs value={tab} onValueChange={setTab}>
-                                    <TabsList className="grid w-full grid-cols-2 mb-6">
-                                        <TabsTrigger value="login">Sign In</TabsTrigger>
-                                        {/* <TabsTrigger value="register">Sign Up</TabsTrigger> */}
-                                    </TabsList>
-
-                                    {/* Sign In */}
-                                    <TabsContent value="login" className="space-y-4">
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="email">Email</Label>
-                                            <div className="relative">
-                                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                                <Input
-                                                    id="email"
-                                                    type="email"
-                                                    placeholder="farmer@example.com"
-                                                    className="pl-9 h-10"
-                                                    value={email}
-                                                    onChange={(e) => { setEmail(e.target.value); setLoginError(""); }}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="password">Password</Label>
-                                            <div className="relative">
-                                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                                <Input
-                                                    id="password"
-                                                    type={showPassword ? "text" : "password"}
-                                                    placeholder="Enter your password"
-                                                    className="pl-9 pr-9 h-10"
-                                                    value={password}
-                                                    onChange={(e) => { setPassword(e.target.value); setLoginError(""); }}
-                                                    onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                                                >
-                                                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        {loginError && (
-                                            <p className="text-xs text-destructive">{loginError}</p>
-                                        )}
-
-                                        <Button className="w-full" onClick={handleSignIn}>
-                                            Sign In
-                                        </Button>
-
-                                        <p className="text-center text-sm text-muted-foreground">
-                                            <Link to="#" className="underline hover:text-foreground">Forgot password?</Link>
-                                        </p>
-                                    </TabsContent>
-
-                                    {/* Sign Up */}
-                                    <TabsContent value="register" className="space-y-4">
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="name">Full Name</Label>
-                                            <Input id="name" type="text" placeholder="John Doe" className="h-10" />
-                                        </div>
-
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="reg-email">Email</Label>
-                                            <div className="relative">
-                                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                                <Input id="reg-email" type="email" placeholder="farmer@example.com" className="pl-9 h-10" />
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="phone">Phone</Label>
-                                            <div className="relative">
-                                                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                                <Input id="phone" type="tel" placeholder="+1234567890" className="pl-9 h-10" />
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-1.5">
-                                            <Label htmlFor="reg-password">Password</Label>
-                                            <div className="relative">
-                                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                                <Input
-                                                    id="reg-password"
-                                                    type={showPassword ? "text" : "password"}
-                                                    placeholder="Create a strong password"
-                                                    className="pl-9 pr-9 h-10"
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                                                >
-                                                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <Button className="w-full" onClick={() => navigate("/dashboard")}>
-                                            Create Account
-                                        </Button>
-                                    </TabsContent>
-                                </Tabs>
-                            </CardContent>
-                        </Card>
+                    {/* Right — hero image */}
+                    <div className="relative flex justify-center lg:justify-end">
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-500/15 to-emerald-700/10 blur-3xl rounded-full scale-110 pointer-events-none" />
+                        <img
+                            src="/hero-picture.png"
+                            alt="Farmer using AgriAidAI in the field"
+                            className="relative w-full max-w-sm lg:max-w-none lg:w-full rounded-2xl object-cover shadow-2xl ring-1 ring-border"
+                        />
                     </div>
 
                 </div>
